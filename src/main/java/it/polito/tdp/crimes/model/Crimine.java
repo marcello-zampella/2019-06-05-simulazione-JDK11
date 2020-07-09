@@ -2,11 +2,39 @@ package it.polito.tdp.crimes.model;
 
 import java.time.LocalDateTime;
 
-public class Crimine {
+
+public class Crimine implements Comparable<Crimine>{
 	
-	String tipo;
-	LocalDateTime ora;
-	Quartiere quartiere;
+	private String tipo;
+	private LocalDateTime ora;
+	private Quartiere quartiere;
+	private Agente agente;
+	
+	private TipoEvento accadimento;
+	
+	public enum TipoEvento {
+		INIZIO_EVENTO,
+		FINE_EVENTO
+	}
+	
+	
+	
+	
+	
+	public TipoEvento getAccadimento() {
+		return accadimento;
+	}
+	public void setAccadimento(TipoEvento accadimento) {
+		this.accadimento = accadimento;
+	}
+	public Crimine(LocalDateTime ora, Quartiere quartiere, TipoEvento accadimento,Agente agente) {
+		super();
+		this.ora = ora;
+		this.quartiere = quartiere;
+		this.accadimento = accadimento;
+		this.agente=agente;
+		this.accadimento=TipoEvento.FINE_EVENTO;
+	}
 	public String getTipo() {
 		return tipo;
 	}
@@ -30,10 +58,26 @@ public class Crimine {
 		this.tipo = tipo;
 		this.ora = ora;
 		this.quartiere = quartiere;
+		this.accadimento=TipoEvento.INIZIO_EVENTO;
+	}
+	
+	
+	
+	public Agente getAgente() {
+		return agente;
+	}
+	public void setAgente(Agente agente) {
+		this.agente = agente;
 	}
 	@Override
 	public String toString() {
-		return "Crimine " + tipo + " ora=" + ora + ", quartiere=" + quartiere;
+		return "Crimine " + tipo +"  "+this.accadimento+" ora=" + ora + ", quartiere=" + quartiere +" "+agente;
+	}
+	
+	@Override
+	public int compareTo(Crimine other) {
+		// TODO Auto-generated method stub
+		return ora.compareTo(other.ora);
 	}
 	
 	

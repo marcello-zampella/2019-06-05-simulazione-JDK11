@@ -76,6 +76,7 @@ public class Model {
 		Simulatore sim=new Simulatore();
 		sim.init(n,inizio,crimini,grafo);
 		sim.simula();
+		System.out.println(crimini.size()+"   "+sim.getMalGestito());
 		
 		
 	}
